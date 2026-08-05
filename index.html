@@ -5,62 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Java Games Collection</title>
   
-  <!-- WebJ2ME Player Libraries -->
-  <script src="https://unpkg.com/jsziptools@1.0.2/jsziptools.js"></script>
-  <script src="https://kalium2020.github.io/webj2me/webj2me.js"></script>
+  <script src="jsziptools.js"></script>
+  <script src="webj2me.js"></script>
   
   <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 15px;
-    }
-    h2 {
-      color: #4caf50;
-      margin-bottom: 20px;
-    }
-    .card {
-      background: #1e1e1e;
-      padding: 15px;
-      border-radius: 10px;
-      display: inline-block;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    select {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background-color: #2b2b2b;
-      color: #fff;
-      margin-bottom: 15px;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #2196f3;
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      width: 100%;
-    }
-    button:hover {
-      background-color: #0b7dda;
-    }
-    #gameContainer {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
+    body { background-color: #121212; color: #fff; font-family: Arial, sans-serif; text-align: center; padding: 15px; }
+    h2 { color: #4caf50; }
+    .card { background: #1e1e1e; padding: 15px; border-radius: 10px; display: inline-block; width: 90%; max-width: 400px; }
+    select { width: 100%; padding: 12px; font-size: 16px; border-radius: 6px; background: #2b2b2b; color: #fff; margin-bottom: 15px; }
+    button { background-color: #2196f3; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 6px; width: 100%; cursor: pointer; }
+    #gameContainer { margin-top: 20px; display: flex; justify-content: center; }
   </style>
 </head>
 <body>
@@ -68,8 +22,7 @@
   <h2>🎮 Cloud Java Games</h2>
 
   <div class="card">
-    <label for="gameSelect" style="display:block; margin-bottom: 10px; font-size: 15px;">গেম সিলেক্ট করুন:</label>
-    
+    <label style="display:block; margin-bottom: 10px;">গেম সিলেক্ট করুন:</label>
     <select id="gameSelect">
       <option value="bounceclassic.jar">Bounce Classic</option>
       <option value="bouncetales.jar">Bounce Tales</option>
@@ -80,7 +33,6 @@
       <option value="governator2.jar">Governator 2</option>
       <option value="tcamels.jar">TCamels</option>
     </select>
-
     <button onclick="playGame()">গেম চালু করুন</button>
   </div>
 
@@ -90,13 +42,9 @@
     function playGame() {
       var selectedGame = document.getElementById("gameSelect").value;
       var container = document.getElementById("gameContainer");
-      
       container.innerHTML = "";
-      
-      if (typeof J2ME !== 'undefined') {
+      if (typeof J2ME !== 'undefined' && J2ME.run) {
         J2ME.run(selectedGame, container);
-      } else {
-        alert("ইমুলেটর লোড হতে সমস্যা হয়েছে। ইন্টারনেট কানেকশন যাচাই করুন।");
       }
     }
   </script>
